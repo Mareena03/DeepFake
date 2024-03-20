@@ -1,18 +1,58 @@
-export default function loginForm()
-{
-    return (
-        <div id="myModal" className="modal" style={{display: 'none', position: 'fixed', zIndex: 1, left: 0, top: 0, width: '100%', height: '100%', overflow: 'auto', backgroundColor: 'rgba(0,0,0,0.4)'}}>
-          <div className="modal-content" style={{backgroundColor: '#fefefe', margin: '15% auto', padding: 20, border: '1px solid #888', width: '80%'}}>
-            <span className="close" style={{color: '#aaaaaa', float: 'right', fontSize: 28, fontWeight: 'bold'}}>&times;</span>
-            <h2 style={{marginTop: 0}}>Login</h2>
-            <form>
-              <label htmlFor="username">Username:</label><br/>
-              <input type="text" id="username" name="username" style={{width: '100%', padding: 10, margin: '5px 0 10px 0', border: '1px solid #ccc', borderRadius: 4, boxSizing: 'border-box'}}/><br/>
-              <label htmlFor="password">Password:</label><br/>
-              <input type="password" id="password" name="password" style={{width: '100%', padding: 10, margin: '5px 0 10px 0', border: '1px solid #ccc', borderRadius: 4, boxSizing: 'border-box'}}/><br/><br/>
-              <button type="button" id="loginSubmit" style={{backgroundColor: '#4CAF50', color: 'white', padding: '10px 20px', border: 'none', cursor: 'pointer', borderRadius: 4}}>Submit</button>
-            </form>
+import styled from 'styled-components';
+import { useState } from 'react';
+import Button from './Button';
+
+// Styled components
+const Modal = styled.div`
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+`;
+
+const ModalContent = styled.div`
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+`;
+const LoginForm = () => {
+  const [show, setShow] = useState(false);
+
+if (show) {
+  return (
+    <Modal id="myModal" className="modal" show={show}>
+      <ModalContent className="modal-content">
+      <span style={{float:"right"}}><Button bgColor="transparent" textColor="red" onClick={()=>setShow(false)}>X</Button></span>
+        <h2 style={{textAlign:"left"}}>Login</h2>
+        <form>
+          <label style={{ textAlign: 'left' }}>Username:</label><br /> {/* Add textAlign style to labels */}
+          <input type="text" id="username" name="username" style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }} /><br />
+          <label style={{ textAlign: 'left' }}>Password:</label><br /> {/* Add textAlign style to labels */}
+          <input type="password" id="password" name="password" style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }} /><br /><br />
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Button bgColor="#00FF00" type="button" id="loginSubmit" onClick={() => setShow(false)}>
+              Submit
+            </Button>
           </div>
-        </div>
-      );
-}
+        </form>
+      </ModalContent>
+    </Modal>
+  );
+  } else {
+    return (
+      <Button bgColor="transparent" textColor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
+        click here to login
+      </Button>
+    );
+  }
+};
+
+export default LoginForm;
