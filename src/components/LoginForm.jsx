@@ -23,18 +23,18 @@ const ModalContent = styled.div`
   border-radius: 10px;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
 `;
-const LoginForm = ({show,setShow}) => {
+const LoginForm = ({ setToggle, show,setShow,children,f1,f2}) => {
 
 if (show) {
   return (
     <Modal id="myModal" className="modal" show={show}>
       <ModalContent className="modal-content">
       <span style={{float:"right"}}><Button bgColor="transparent" textColor="red" onClick={()=>setShow(false)}>X</Button></span>
-        <h2 style={{textAlign:"left"}}>Login</h2>
+        <h2 style={{textAlign:"left"}}>{children}</h2>
         <form>
-          <label style={{ textAlign: 'left' }}>Username:</label><br /> {/* Add textAlign style to labels */}
+          <label style={{ textAlign: 'left' }}>{f1}:</label><br /> 
           <input type="text" id="username" name="username" style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }} /><br />
-          <label style={{ textAlign: 'left' }}>Password:</label><br /> {/* Add textAlign style to labels */}
+          <label style={{ textAlign: 'left' }}>{f2}:</label><br /> 
           <input type="password" id="password" name="password" style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }} /><br /><br />
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button bgColor="#00FF00" type="button" id="loginSubmit" onClick={() => setShow(false)}>
@@ -42,13 +42,30 @@ if (show) {
             </Button>
           </div>
         </form>
+        <br>
+        </br>
+        <Button 
+  bgColor="transparent" 
+  textColor="red" 
+  type="button"  
+  onClick={() => {
+    setShow(false); // Close the existing form
+    setToggle(prevToggle => (prevToggle === 1 ? 2 : 1)); // Switch between login and sign up forms
+    // Open the other form
+    if (show) {
+      setShow(prevShow => !prevShow);
+    }
+  }}
+>
+  Switch between login and Sign Up
+</Button>
       </ModalContent>
     </Modal>
   );
   } else {
     return (
       <Button bgColor="transparent" textColor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
-        click here to login
+        click here to {children}
       </Button>
     );
   }
