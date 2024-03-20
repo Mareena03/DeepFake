@@ -1,14 +1,10 @@
 import { useState } from "react";
 import LoginForm from "./components/LoginForm";
-import Button from "./components/Button";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(true);
   const [toggle, setToggle] = useState(1);
-
-  function handleFormSwitch(){}
-
   return (
     <>
       {toggle === 1 && (
@@ -21,7 +17,6 @@ function App() {
           Sign Up
         </LoginForm>
       )}
-      <Button onClick={handleFormSwitch}>Switch between Login and Sign Up</Button>
     </>
   );
 }
