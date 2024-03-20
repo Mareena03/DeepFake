@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import styled from 'styled-components';
-import { useState } from 'react';
 import Button from './Button';
 
 // Styled components
@@ -23,8 +23,7 @@ const ModalContent = styled.div`
   border-radius: 10px;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
 `;
-const LoginForm = () => {
-  const [show, setShow] = useState(false);
+const LoginForm = ({show,setShow}) => {
 
 if (show) {
   return (
