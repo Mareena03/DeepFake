@@ -25,7 +25,7 @@ const ModalContent = styled.div`
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
 `;
 
-const LoginForm = ({ toggle, setToggle, show, setShow, children, f1, f2 }) => {
+const LoginForm = ({ toggle, setToggle, show, setShow, children, f1, f2,bcolor }) => {
   // State for username and password inputs
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -109,7 +109,7 @@ const LoginForm = ({ toggle, setToggle, show, setShow, children, f1, f2 }) => {
   } else {
     // Render a button to show the login form
     return (
-      <Button bgcolor="red" textcolor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
+      <Button bgcolor={bcolor} textcolor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
         {children}
       </Button>
     );
