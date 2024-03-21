@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from 'styled-components';
 import Button from './Button';
+import { useState } from 'react';
 
 // Styled components
 const Modal = styled.div`
@@ -23,7 +24,13 @@ const ModalContent = styled.div`
   border-radius: 10px;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
 `;
-const LoginForm = ({ setToggle, show,setShow,children,f1,f2}) => {
+const LoginForm = ({ toggle, setToggle, show,setShow,children,f1,f2}) => {
+  const [username,setUsername] = useState('');
+  const [password,setPassword] = useState('');
+  function handleSubmit()
+  {
+    toggle === 1 ? console.log("login") : console.log("sign up");
+  }
 
 if (show) {
   return (
@@ -33,11 +40,14 @@ if (show) {
         <h2 style={{textAlign:"left"}}>{children}</h2>
         <form>
           <label style={{ textAlign: 'left' }}>{f1}:</label><br /> 
-          <input type="text" id="username" name="username" style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }} /><br />
+          <input type="text" id="username" value={username} onChange={(e)=>setUsername(e.target.value)} style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }} /><br />
           <label style={{ textAlign: 'left' }}>{f2}:</label><br /> 
-          <input type="password" id="password" name="password" style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }} /><br /><br />
+          <input type="password" id="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)} style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }} /><br /><br />
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Button bgColor="#00FF00" type="button" id="loginSubmit" onClick={() => setShow(false)}>
+            <Button bgColor="#00FF00" type="button" id="loginSubmit" onClick={() => 
+            {
+              setShow(false);
+              handleSubmit()}}>
               Submit
             </Button>
           </div>
@@ -64,8 +74,8 @@ if (show) {
   );
   } else {
     return (
-      <Button bgColor="transparent" textColor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
-        click here to {children}
+      <Button bgColor="red" textColor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
+         {children}
       </Button>
     );
   }
