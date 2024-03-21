@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from 'styled-components';
 import Button from './Button';
-import { useState } from 'react';
+import { useState, } from 'react';
 
 // Styled components
 const Modal = styled.div`
@@ -25,15 +25,44 @@ const ModalContent = styled.div`
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
 `;
 
-const LoginForm = ({ toggle, setToggle, show, setShow, children, f1, f2,bcolor }) => {
+const LoginForm = ({ setToggle, show, setShow, children, f1, f2,bcolor }) => {
   // State for username and password inputs
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // Function to handle form submission
+  function handleRet()
+  {
+    fetch("http://localhost:8000/data")
+    .then(res=>res.json())
+    .then(data=>console.log(data))
+  }
   function handleSubmit() {
-    // Determine if it's a login or sign up based on toggle state
-    toggle === 1 ? console.log("login") : console.log("sign up");
+    fetch("http://localhost:8000/uploadVideo", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: username,
+        content: password,
+      })
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then(data => {
+        console.log(data); // Log response from backend
+        // Optionally, you can reset the form after successful submission
+        setUsername('');
+        setPassword('');
+      })
+      .catch(error => {
+        console.error('Error:', error); // Handle errors
+      });
+
   }
 
 
@@ -110,40 +139,14 @@ const LoginForm = ({ toggle, setToggle, show, setShow, children, f1, f2,bcolor }
     );
   } else {
     // Render a button to show the login form
-    return (
-      <Button bgcolor={bcolor} textcolor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
+    return (<>      <Button bgcolor={bcolor} textcolor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
         {children}
       </Button>
+      <Button bgcolor="red" textcolor="black" onClick={()=>handleRet()}>click me</Button>
+      </>
+      
     );
   }
 };
 
 export default LoginForm;
-
-
-  fetch("http://localhost:8000/createposts", {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          title: title,
-          content: content,
-          rating: rating
-      })
-  })
-  .then(res => {
-      if (!res.ok) {
-          throw new Error('Network response was not ok');
-      }
-      return res.json();
-  })
-  .then(data => {
-      console.log(data); // Log response from backend
-      // Optionally, you can reset the form after successful submission
-      document.getElementById("postForm").reset();
-  })
-  .catch(error => {
-      console.error('Error:', error); // Handle errors
-  });
-});
