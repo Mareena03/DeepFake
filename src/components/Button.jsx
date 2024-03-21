@@ -4,15 +4,15 @@ import styled from 'styled-components';
 
 const StyledButton = styled.button`
   padding: 10px 20px;
-  background-color: ${({ bgColor }) => bgColor || 'transparent'};
+  background-color: ${({ bgcolor }) => bgcolor || 'transparent'};
   color: ${({ textColor }) => textColor || 'white'}; 
   border: none;
   cursor: pointer;
 `;
 
-const Button = ({ children, bgColor, onClick,textColor}) => {
+const Button = ({ children, bgcolor, onClick,textColor}) => {
   return (
-    <StyledButton bgColor={bgColor} onClick={onClick} textColor={textColor}>
+    <StyledButton bgcolor={bgcolor} onClick={onClick} textColor={textColor}>
       {children}
     </StyledButton>
   );

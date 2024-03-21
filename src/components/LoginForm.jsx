@@ -43,7 +43,7 @@ const LoginForm = ({ toggle, setToggle, show, setShow, children, f1, f2 }) => {
         <ModalContent className="modal-content">
           {/* Close button */}
           <span style={{ float: "right" }}>
-            <Button bgColor="transparent" textColor="red" onClick={() => {
+            <Button bgcolor="transparent" textcolor="red" onClick={() => {
               setShow(false);
               setUsername('');
               setPassword('');
@@ -73,7 +73,7 @@ const LoginForm = ({ toggle, setToggle, show, setShow, children, f1, f2 }) => {
             {/* Submit button */}
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Button
-                bgColor="#00FF00"
+                bgcolor="#00FF00"
                 type="button"
                 id="loginSubmit"
                 onClick={() => {
@@ -89,8 +89,8 @@ const LoginForm = ({ toggle, setToggle, show, setShow, children, f1, f2 }) => {
           <br />
           {/* Button to switch between login and sign up */}
           <Button
-            bgColor="transparent"
-            textColor="red"
+            bgcolor="transparent"
+            textcolor="red"
             type="button"
             onClick={() => {
               setShow(false); // Close the existing form
@@ -109,7 +109,7 @@ const LoginForm = ({ toggle, setToggle, show, setShow, children, f1, f2 }) => {
   } else {
     // Render a button to show the login form
     return (
-      <Button bgColor="red" textColor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
+      <Button bgcolor="red" textcolor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
         {children}
       </Button>
     );
