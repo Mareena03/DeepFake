@@ -24,58 +24,93 @@ const ModalContent = styled.div`
   border-radius: 10px;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
 `;
-const LoginForm = ({ toggle, setToggle, show,setShow,children,f1,f2}) => {
-  const [username,setUsername] = useState('');
-  const [password,setPassword] = useState('');
-  function handleSubmit()
-  {
+
+const LoginForm = ({ toggle, setToggle, show, setShow, children, f1, f2 }) => {
+  // State for username and password inputs
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  // Function to handle form submission
+  function handleSubmit() {
+    // Determine if it's a login or sign up based on toggle state
     toggle === 1 ? console.log("login") : console.log("sign up");
   }
 
-if (show) {
-  return (
-    <Modal id="myModal" className="modal" show={show}>
-      <ModalContent className="modal-content">
-      <span style={{float:"right"}}><Button bgColor="transparent" textColor="red" onClick={()=>setShow(false)}>X</Button></span>
-        <h2 style={{textAlign:"left"}}>{children}</h2>
-        <form>
-          <label style={{ textAlign: 'left' }}>{f1}:</label><br /> 
-          <input type="text" id="username" value={username} onChange={(e)=>setUsername(e.target.value)} style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }} /><br />
-          <label style={{ textAlign: 'left' }}>{f2}:</label><br /> 
-          <input type="password" id="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)} style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }} /><br /><br />
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Button bgColor="#00FF00" type="button" id="loginSubmit" onClick={() => 
-            {
+  // Render the login form if show is true
+  if (show) {
+    return (
+      <Modal id="myModal" className="modal" show={show}>
+        <ModalContent className="modal-content">
+          {/* Close button */}
+          <span style={{ float: "right" }}>
+            <Button bgColor="transparent" textColor="red" onClick={() => {
               setShow(false);
-              handleSubmit()}}>
-              Submit
-            </Button>
-          </div>
-        </form>
-        <br>
-        </br>
-        <Button 
-  bgColor="transparent" 
-  textColor="red" 
-  type="button"  
-  onClick={() => {
-    setShow(false); // Close the existing form
-    setToggle(prevToggle => (prevToggle === 1 ? 2 : 1)); // Switch between login and sign up forms
-    // Open the other form
-    if (show) {
-      setShow(prevShow => !prevShow);
-    }
-  }}
->
-  Switch between login and Sign Up
-</Button>
-      </ModalContent>
-    </Modal>
-  );
+              setUsername('');
+              setPassword('');
+            }}>X</Button>
+          </span>
+          {/* Form title */}
+          <h2 style={{ textAlign: "left" }}>{children}</h2>
+          {/* Form inputs */}
+          <form>
+            <label style={{ textAlign: 'left' }}>{f1}:</label><br />
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }}
+            /><br />
+            <label style={{ textAlign: 'left' }}>{f2}:</label><br />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }}
+            /><br /><br />
+            {/* Submit button */}
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Button
+                bgColor="#00FF00"
+                type="button"
+                id="loginSubmit"
+                onClick={() => {
+                  setShow(false);
+                  setUsername('');
+                  setPassword('');
+                  handleSubmit();
+                }}>
+                Submit
+              </Button>
+            </div>
+          </form>
+          <br />
+          {/* Button to switch between login and sign up */}
+          <Button
+            bgColor="transparent"
+            textColor="red"
+            type="button"
+            onClick={() => {
+              setShow(false); // Close the existing form
+              // Toggle between login and sign up forms
+              setToggle(prevToggle => (prevToggle === 1 ? 2 : 1));
+              // Open the other form
+              if (show) {
+                setShow(prevShow => !prevShow);
+              }
+            }}>
+            Switch between login and Sign Up
+          </Button>
+        </ModalContent>
+      </Modal>
+    );
   } else {
+    // Render a button to show the login form
     return (
       <Button bgColor="red" textColor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
-         {children}
+        {children}
       </Button>
     );
   }
