@@ -7,17 +7,17 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5173"],
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
-    allow_methods=["POST","GET"],
+    allow_methods=["POST", "GET"],
     allow_headers=["*"],
 )
 
-class loginDeat(BaseModel):
+class LoginDetail(BaseModel):
     title: str
     content: str
 
-login = [
+login_data = [
     {"title": "title1", "content": "content1", "id": 1},
     {"title": "title2", "content": "content2", "id": 2}
 ]
@@ -26,24 +26,12 @@ def generate_post_id():
     return randrange(0, 1000000)
 
 @app.post("/uploadVideo")
-async def home(login_details: loginDeat):
-    print(login_details)
-    loginData = login_details.dict()
-    print(loginData)
-    loginData["id"] = generate_post_id()
-    login.append(loginData)
-    return {
-        'message': "welcome"
-    }
+async def upload_video(login_details: LoginDetail):
+    login_data_dict = login_details.dict()
+    login_data_dict["id"] = generate_post_id()
+    login_data.append(login_data_dict)
+    return {"message": "Video uploaded successfully"}
 
 @app.get("/data")
-async def deat():
-    return {
-        "deatils": login
-    }
-
-# # Handling OPTIONS requests
-# @app.options("/uploadVideo")
-# async def options_upload_video():
-#     return {"allow": "POST"}  # Allow POST method for /uploadVideo endpoint
-
+async def get_data():
+    return {"details": login_data}
