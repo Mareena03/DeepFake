@@ -30,12 +30,12 @@ const LoginForm = ({ setToggle, show, setShow, children, f1, f2,bcolor }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleRet()
-  {
-    fetch("http://localhost:8000/data")
-    .then(res=>res.json())
-    .then(data=>console.log(data))
-  }
+  // function handleRet()
+  // {
+  //   fetch("http://localhost:8000/data")
+  //   .then(res=>res.json())
+  //   .then(data=>console.log(data))
+  // }
   function handleSubmit() {
     fetch("http://localhost:8000/uploadVideo", {
       method: 'POST',
