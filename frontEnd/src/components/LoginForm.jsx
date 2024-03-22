@@ -142,7 +142,6 @@ const LoginForm = ({ setToggle, show, setShow, children, f1, f2,bcolor }) => {
     return (<>      <Button bgcolor={bcolor} textcolor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
         {children}
       </Button>
-      <Button bgcolor="red" textcolor="black" onClick={()=>handleRet()}>click me</Button>
       </>
       
     );
