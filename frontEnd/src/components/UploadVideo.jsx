@@ -55,6 +55,7 @@ export default function UploadVideo() {
                 throw new Error('Network response was not ok');
             }
             console.log('File uploaded successfully:');
+            setShowInput(false)
         })
         .catch(error => {
             console.error('Error uploading file:', error);
