@@ -1,8 +1,9 @@
-from fastapi import FastAPI
-from fastapi import File,UploadFile
+from fastapi import FastAPI,File,UploadFile
 from pydantic import BaseModel
 from random import randrange
 from fastapi.middleware.cors import CORSMiddleware
+import shutil
+import os
 
 app = FastAPI()
 
@@ -39,16 +40,23 @@ async def get_data():
 
 # ..........................................................................
 video_data=[]
+UPLOAD_DIRECTORY = "uploads"
 
 @app.post("/uploadVideo")
-async def upload_video(video_file: UploadFile = File(...)):
-    video_data_dict = {
-        "filename": video_file.filename,
-        "content_type": video_file.content_type,
-        "id": generate_post_id()
-    }
-    video_data.append(video_data_dict)
-    return {"message": "Video uploaded successfully"}
+async def upload_video(video: UploadFile = File(...)):
+    try:
+        if not os.path.exists(UPLOAD_DIRECTORY):
+            os.makedirs(UPLOAD_DIRECTORY)
+
+        file_location = os.path.join(UPLOAD_DIRECTORY, video.filename)
+        with open(file_location, "wb") as file_object:
+            file_object.write(video.file.read())
+
+        return {"message": "File uploaded successfully", "file_location": file_location}
+    except Exception as e:
+        return {"error": str(e)}
+
+
 
 @app.get("/video_data")
 async def get_video_data():
