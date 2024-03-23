@@ -15,7 +15,7 @@ export default function UploadVideo() {
         }
 
         const formData = new FormData();
-        formData.append('video', selectedFile,'video.mp4');
+        formData.append('video', selectedFile,'videoFile.mp4');
 
         fetch("http://localhost:8000/uploadVideo", {
             method: 'POST',
