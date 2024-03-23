@@ -37,7 +37,7 @@ const LoginForm = ({ setToggle, show, setShow, children, f1, f2,bcolor }) => {
   //   .then(data=>console.log(data))
   // }
   function handleSubmit() {
-    fetch("http://localhost:8000/uploadVideo", {
+    fetch("http://localhost:8000/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -55,7 +55,6 @@ const LoginForm = ({ setToggle, show, setShow, children, f1, f2,bcolor }) => {
       })
       .then(data => {
         console.log(data); // Log response from backend
-        // Optionally, you can reset the form after successful submission
         setUsername('');
         setPassword('');
       })
@@ -109,8 +108,6 @@ const LoginForm = ({ setToggle, show, setShow, children, f1, f2,bcolor }) => {
                 id="loginSubmit"
                 onClick={() => {
                   setShow(false);
-                  setUsername('');
-                  setPassword('');
                   handleSubmit();
                 }}>
                 Submit

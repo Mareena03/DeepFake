@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi import File,UploadFile
 from pydantic import BaseModel
 from random import randrange
 from fastapi.middleware.cors import CORSMiddleware
@@ -25,8 +26,8 @@ login_data = [
 def generate_post_id():
     return randrange(0, 1000000)
 
-@app.post("/uploadVideo")
-async def upload_video(login_details: LoginDetail):
+@app.post("/login")
+async def login(login_details: LoginDetail):
     login_data_dict = login_details.dict()
     login_data_dict["id"] = generate_post_id()
     login_data.append(login_data_dict)
@@ -35,3 +36,20 @@ async def upload_video(login_details: LoginDetail):
 @app.get("/data")
 async def get_data():
     return {"details": login_data}
+
+# ..........................................................................
+video_data=[]
+
+@app.post("/uploadVideo")
+async def upload_video(video_file: UploadFile = File(...)):
+    video_data_dict = {
+        "filename": video_file.filename,
+        "content_type": video_file.content_type,
+        "id": generate_post_id()
+    }
+    video_data.append(video_data_dict)
+    return {"message": "Video uploaded successfully"}
+
+@app.get("/video_data")
+async def get_video_data():
+    return {"details": video_data}
