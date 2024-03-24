@@ -12,15 +12,19 @@ const Modal = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.4); /* Purple shade with 40% opacity */
 `;
+
 
 const ModalContent = styled.div`
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 40%;
   border-radius: 10px;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
 `;
@@ -73,7 +77,7 @@ const LoginForm = ({ setToggle, show, setShow, children, f1, f2,bcolor }) => {
         <ModalContent className="modal-content">
           {/* Close button */}
           <span style={{ float: "right" }}>
-            <Button bgcolor="transparent" textcolor="red" onClick={() => {
+            <Button bradius="100px" border="1px solid" bgcolor="transparent" textcolor="red" onClick={() => {
               setShow(false);
               setUsername('');
               setPassword('');
@@ -118,6 +122,9 @@ const LoginForm = ({ setToggle, show, setShow, children, f1, f2,bcolor }) => {
           {/* Button to switch between login and sign up */}
           <Button
             bgcolor="transparent"
+            border="1px solid #333"
+            bordercolor="red"
+            bradius="100px"
             textcolor="red"
             type="button"
             onClick={() => {

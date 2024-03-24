@@ -1,5 +1,5 @@
 import Intropage from "./components/IntroPage";
-import UploadVideo from "./components/UploadVideo";
+// import UploadVideo from "./components/UploadVideo";
 import styled from "styled-components";
 import TypingText from "./components/TypingText";
 
@@ -12,7 +12,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex: 2;
-  background: purple;
+  background:  #7ed5f1  ;
 `;
 
 const Heading = styled.div`
@@ -36,7 +36,7 @@ const Top = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 96vh; /* Adjust the height as needed */
+  height: 100vh; /* Adjust the height as needed */
 `;
 const ButtonContainer = styled.div`
   display: flex;
@@ -64,11 +64,11 @@ function App() {
     <Top>
       <h1>Get Started...</h1>
       <ButtonContainer >
-        <Intropage type="Login" bcolor="purple" />
+        <Intropage type="Login" bcolor="#7ed5f1" />
         </ButtonContainer>
       </Top>
     <Bottom>
-    <UploadVideo />
+    {/* <UploadVideo /> */}
     </Bottom>
   </Leftside>
 </Container>
