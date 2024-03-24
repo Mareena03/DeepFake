@@ -136,8 +136,8 @@ const LoginForm = ({ setToggle, show, setShow, children, f1, f2,bcolor }) => {
     );
   } else {
     // Render a button to show the login form
-    return (<>      <Button bgcolor={bcolor} textcolor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
-        {children}
+    return (<>      <Button bradius="100px" bwidth="60%" bgcolor={bcolor} textcolor="000000" type="button" id="loginSubmit" onClick={() => setShow(true)}>
+        <div style={{color:"white", fontWeight:"bold", fontSize:"large"}}>{children}</div>
       </Button>
       </>
       
