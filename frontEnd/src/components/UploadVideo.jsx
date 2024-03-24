@@ -10,17 +10,23 @@ const Modal = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
 `;
 
 const ModalContent = styled.div`
-  background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
   width: 50%;
   border-radius: 10px;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+    border: 2px dashed #007bff; /* Blue dashed border */
+    background-color: #f1f1f1;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 255, 0.1); /* Blue shadow effect */
+}
 `;
 
 const VideoPreview = styled.video`
@@ -56,6 +62,7 @@ export default function UploadVideo() {
             }
             console.log('File uploaded successfully:');
             setShowInput(false)
+            setVideoURL('')
         })
         .catch(error => {
             console.error('Error uploading file:', error);
