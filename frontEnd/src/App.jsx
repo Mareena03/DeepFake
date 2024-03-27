@@ -1,7 +1,8 @@
 import Intropage from "./components/IntroPage";
-// import UploadVideo from "./components/UploadVideo";
 import styled from "styled-components";
 import TypingText from "./components/TypingText";
+import UploadForm from "./components/UploadForm";
+import { useState } from "react";
 
 
 const Container = styled.div`
@@ -36,7 +37,7 @@ const Top = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Adjust the height as needed */
+  height: 96vh; /* Adjust the height as needed */
 `;
 const ButtonContainer = styled.div`
   display: flex;
@@ -51,6 +52,14 @@ align-items: center;
 justify-content: center;
 width:100%`;
 function App() {
+  function handleAuthentication()
+  {
+    //if sucessfullt logined
+    setLogin(true)
+  }
+  const [login,setLogin]=useState(false);
+ if(!login)
+ {
   return (
     <Container>
   <Rightside>
@@ -68,11 +77,19 @@ function App() {
         </ButtonContainer>
       </Top>
     <Bottom>
-    {/* <UploadVideo /> */}
+      <button onClick={handleAuthentication}>click me </button>
     </Bottom>
   </Leftside>
 </Container>
   );
+ }
+ else
+ {
+  return(
+  <>
+    <UploadForm></UploadForm>
+  </>);
+ }
 }
 
 export default App;
