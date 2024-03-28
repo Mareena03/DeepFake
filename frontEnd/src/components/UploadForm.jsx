@@ -7,12 +7,20 @@ const Header=styled.div`
   color: #fff;
   padding: 20px;
 `;
-const BackgroundImage=styled.div`
-background-size: cover;
-background-position: center;
-height: 100vh;
-position: relative;
+const BackgroundImage = styled.div`
+  background-size: cover;
+  background-position: center;
+  height: 87vh;
+  position: relative;
+  background-image: url('../public/1.jpg');
+  
+  /* Flexbox properties for centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Optional if you have text content */
 `;
+
 const Container=styled.div``;
 
 
