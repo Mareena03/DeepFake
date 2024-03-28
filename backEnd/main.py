@@ -32,7 +32,7 @@ async def login(login_details: LoginDetail):
     login_data_dict = login_details.dict()
     login_data_dict["id"] = generate_post_id()
     login_data.append(login_data_dict)
-    return {"message": "Video uploaded successfully"}
+    return {"message": "Login sucessfull"}
 
 @app.get("/data")
 async def get_data():
