@@ -61,6 +61,7 @@ export default function UploadVideo() {
                 throw new Error('Network response was not ok');
             }
             console.log('File uploaded successfully:');
+            alert("the selected video will be processed for checking")
             setShowInput(false)
             setVideoURL('')
         })
