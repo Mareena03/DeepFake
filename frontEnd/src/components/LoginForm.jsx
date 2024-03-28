@@ -136,7 +136,7 @@ const LoginForm = ({ setToggle, show, setShow, children, f1, f2,bcolor }) => {
                 setShow(prevShow => !prevShow);
               }
             }}>
-            Switch between login and Sign Up
+            Doesnt have an account then SignUp
           </Button>
         </ModalContent>
       </Modal>
