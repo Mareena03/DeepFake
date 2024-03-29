@@ -65,7 +65,7 @@ function App() {
   <Rightside>
     <Heading><h1 style={{ color: "white", textDecoration: "underline" }}>DeepReality</h1></Heading>
     <Textsection><h1>
-      <TypingText text="DeepReality : A Deepfake Dectection Tool using VGG16 and EfficentNet" speed={50} />
+      <TypingText text="DeepReality : A Deepfake Detection Tool." speed={50} />
       </h1>
       </Textsection>
   </Rightside>
