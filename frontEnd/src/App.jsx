@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TypingText from "./components/TypingText";
 import UploadForm from "./components/UploadForm";
 import { useState } from "react";
+import SketchfabModel from "./components/SketchfabModel"
 
 
 const Container = styled.div`
@@ -57,7 +58,7 @@ function App() {
     //if sucessfullt logined
     setLogin(true)
   }
-  const [login,setLogin]=useState(false);
+  const [login,setLogin]=useState(true);
  if(!login)
  {
   return (
@@ -87,9 +88,17 @@ function App() {
  {
   return(
   <>
-    <UploadForm></UploadForm>
+    <SketchfabModel>
+      <UploadForm />
+    </SketchfabModel>
   </>);
  }
 }
-
-export default App;
+ export default App;
+// import SketchfabModel from "./components/SketchfabModel"
+// export default function App()
+// {
+//   return(<>
+//   <SketchfabModel></SketchfabModel>
+//   </>)
+// }
