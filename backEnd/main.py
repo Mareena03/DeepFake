@@ -19,10 +19,15 @@ class LoginDetail(BaseModel):
     title: str
     content: str
 
+class SignupDetail(BaseModel):
+    title: str
+    content: str
+
 login_data = [
     {"title": "title1", "content": "content1", "id": 1},
     {"title": "title2", "content": "content2", "id": 2}
 ]
+
 
 def generate_post_id():
     return randrange(0, 1000000)
@@ -33,6 +38,16 @@ async def login(login_details: LoginDetail):
     login_data_dict["id"] = generate_post_id()
     login_data.append(login_data_dict)
     return {"message": "Login sucessfull"}
+
+# signup_data=[]
+
+# @app.post("/signup")
+# async def login(signup_details: SignupDetail):
+#     signup_data_dict = signup_details.dict()
+#     signup_data_dict["id"] = generate_post_id()
+#     signup_data.append(signup_data_dict)
+#     return {"message": "signin sucessfull","details":signup_data}
+
 
 @app.get("/data")
 async def get_data():

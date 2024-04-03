@@ -8,7 +8,7 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   // background: linear-gradient(to right, #007bff, #ff0000);
-  color: red;
+  color: white;
   padding: 20px;
   height: 80px; /* Adjust the height as needed */
 `;
