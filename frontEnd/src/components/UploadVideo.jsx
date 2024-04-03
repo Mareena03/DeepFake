@@ -103,7 +103,7 @@ export default function UploadVideo() {
                     </ModalContent>
                 </Modal>
             ) : (
-                <Button bgcolor="black" textcolor="white" onClick={() => setShowInput(true)}>Upload Video</Button>
+                <Button bgcolor="#87A093" textcolor="white"  onClick={() => setShowInput(true)}>Upload Video</Button>
             )}
         </div>
     );

@@ -54,7 +54,7 @@ const SketchfabModel = ({children}) => {
       
       {/* Other Components */}
       {isContentVisible && (
-        <><Header><h1>welcome</h1></Header>
+        <><Header><h1></h1></Header>
         <div className="content-overlay" style={{ position: 'relative', zIndex: 1 }}>
             {children}
         </div>
