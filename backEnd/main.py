@@ -4,7 +4,7 @@ from random import randrange
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
 import os
-from bModel import prediction
+from Bmodel import prediction
 import keras as tf
 app = FastAPI()
 
@@ -89,7 +89,7 @@ async def get_video_data():
 
 
 def preprocess_and_predict(file_location):
-    model = tf.models.load_model('models\deepfake-detection-model-vggNew.h5')
+    model = tf.models.load_model('models\deepfake-detection-model-vgg.h5')
     # Perform preprocessing (if any) on the uploaded video file
     # Run prediction using the deepfake detection function
     video_name = file_location
