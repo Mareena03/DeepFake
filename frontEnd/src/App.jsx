@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TypingText from "./components/TypingText";
 import UploadForm from "./components/UploadForm";
 import { useState } from "react";
+import SketchfabModel from "./components/SketchfabModel"
 
 
 const Container = styled.div`
@@ -65,7 +66,7 @@ function App() {
   <Rightside>
     <Heading><h1 style={{ color: "white", textDecoration: "underline" }}>DeepReality</h1></Heading>
     <Textsection><h1>
-      <TypingText text="DeepReality : A Deepfake Dectection Tool using VGG16 and EfficentNet" speed={50} />
+      <TypingText text="DeepReality : A Deepfake Detection Tool." speed={50} />
       </h1>
       </Textsection>
   </Rightside>
@@ -87,9 +88,17 @@ function App() {
  {
   return(
   <>
-    <UploadForm></UploadForm>
+    <SketchfabModel>
+      <UploadForm />
+    </SketchfabModel>
   </>);
  }
 }
-
-export default App;
+ export default App;
+// import SketchfabModel from "./components/SketchfabModel"
+// export default function App()
+// {
+//   return(<>
+//   <SketchfabModel></SketchfabModel>
+//   </>)
+// }
