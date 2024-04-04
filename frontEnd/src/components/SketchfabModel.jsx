@@ -32,7 +32,7 @@ const SketchfabModel = ({children}) => {
       {/* Custom loading indicator */}
       {!isLoaded && (
         <div className="custom-loader">
-          <p>Loading...</p>
+          <p></p>
           {/* Add loading spinner or animation here */}
         </div>
       )}

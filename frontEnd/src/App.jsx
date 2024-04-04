@@ -90,6 +90,7 @@ function App() {
   <>
     <SketchfabModel>
       <UploadForm />
+      
     </SketchfabModel>
   </>);
  }
