@@ -22,7 +22,7 @@ const UploadForm = () => {
       })
       .catch(error => console.error('Error fetching prediction result:', error));
   }, []); // Empty dependency array to run the effect only once when the component mounts
-
+// done
   return (
     <Container>
       <UploadVideo />
