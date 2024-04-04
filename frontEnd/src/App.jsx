@@ -1,9 +1,11 @@
-import Intropage from "./components/IntroPage";
 import styled from "styled-components";
 import TypingText from "./components/TypingText";
 import UploadForm from "./components/UploadForm";
 import { useState } from "react";
 import SketchfabModel from "./components/SketchfabModel"
+import SignupForm from "./components/SignupForm";
+import LoginForm from "./components/LoginForm"
+
 
 
 const Container = styled.div`
@@ -74,7 +76,8 @@ function App() {
     <Top>
       <h1>Get Started...</h1>
       <ButtonContainer >
-        <Intropage type="Login" bcolor="#7ed5f1" />
+        <SignupForm></SignupForm>
+        <LoginForm></LoginForm>
         </ButtonContainer>
       </Top>
     <Bottom>
