@@ -1,4 +1,5 @@
 fastapi[all]
+matplotlib
 dlib
 numpy
 opencv-python
