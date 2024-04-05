@@ -1,4 +1,1 @@
 fastapi[all]
-matplotliib
-dlib
-opencv-python
