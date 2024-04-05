@@ -32,7 +32,7 @@ const SketchfabModel = ({children}) => {
       {/* Custom loading indicator */}
       {!isLoaded && (
         <div className="custom-loader">
-          <p>Loading...</p>
+          <p></p>
           {/* Add loading spinner or animation here */}
         </div>
       )}
@@ -54,7 +54,7 @@ const SketchfabModel = ({children}) => {
       
       {/* Other Components */}
       {isContentVisible && (
-        <><Header><h1>welcome</h1></Header>
+        <><Header><h1></h1></Header>
         <div className="content-overlay" style={{ position: 'relative', zIndex: 1 }}>
             {children}
         </div>

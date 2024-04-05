@@ -26,7 +26,7 @@ const ModalContent = styled.div`
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
 `;
 
-export default function LoginForm() {
+export default function SignupForm() {
     const [showContent, setShowContent] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -38,11 +38,11 @@ export default function LoginForm() {
     const closeSignup = () => {
         setShowContent(false);
     };
-    const handleLogin=()=>{
+    const handleSignup=()=>{
         setShowContent(false)
 
             //fastapi
-            fetch("http://localhost:8000/login", {
+            fetch("http://localhost:8000/signup", {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ export default function LoginForm() {
 
     return (
         <>
-            <Button bradius="100px" bwidth="45%" bgcolor="green" textcolor="000000" type="button" id="loginSubmit" onClick={showSignup}>Login</Button>
+            <Button bradius="100px" bwidth="45%" bgcolor="green" textcolor="000000" type="button" id="loginSubmit" onClick={showSignup}>Signup</Button>
             {showContent && 
                 <Modal>
                     <ModalContent>
@@ -79,7 +79,7 @@ export default function LoginForm() {
                             {/* Use a function reference, not a function call */}
                             <Button bradius="100px" border="1px solid" bgcolor="transparent" textcolor="red" onClick={closeSignup}>X</Button>
                         </span>
-                        <h2 style={{ textAlign: "left" }}>Login</h2>
+                        <h2 style={{ textAlign: "left" }}>Sign Up</h2>
                         <form>
                             <label style={{ textAlign: 'left' }}>Username:</label>
                             <input style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }}type="text" id="pa" value={username} onChange={(e)=>setUsername(e.target.value)} ></input>
@@ -88,7 +88,7 @@ export default function LoginForm() {
                             <input style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }}type="text" id="username" value={password} onChange={(e)=>setPassword(e.target.value)} ></input>
                             <br/>
                             <div>
-                                <Button bgcolor="#00FF00" type="button" onClick={handleLogin}>Sign Up</Button>
+                                <Button bgcolor="#00FF00" type="button" onClick={handleSignup}>Sign Up</Button>
                             </div>
                         </form>
                     </ModalContent>
