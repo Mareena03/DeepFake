@@ -40,6 +40,8 @@ export default function SignupForm() {
     };
     const handleSignup=()=>{
         setShowContent(false)
+        setUsername('');
+        setPassword('');
 
             //fastapi
             fetch("http://localhost:8000/signup", {
@@ -60,8 +62,6 @@ export default function SignupForm() {
               })
               .then(data => {
                 console.log(data); // Log response from backend
-                setUsername('');
-                setPassword('');
               })
               .catch(error => {
                 console.error('Error:', error); // Handle errors
