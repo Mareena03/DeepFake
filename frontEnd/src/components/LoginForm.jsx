@@ -85,7 +85,7 @@ export default function LoginForm() {
                             <input style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }}type="text" id="pa" value={username} onChange={(e)=>setUsername(e.target.value)} ></input>
                             <br/>
                             <label style={{ textAlign: 'left' }}>Password:</label>
-                            <input style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }}type="text" id="username" value={password} onChange={(e)=>setPassword(e.target.value)} ></input>
+                            <input style={{ width: 'calc(100% - 24px)', padding: '10px', margin: '5px 0 10px 0' }}type="password" id="username" value={password} onChange={(e)=>setPassword(e.target.value)} ></input>
                             <br/>
                             <div>
                                 <Button bgcolor="#00FF00" type="button" onClick={handleLogin}>Sign Up</Button>
