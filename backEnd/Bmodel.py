@@ -1,7 +1,7 @@
 
 import matplotlib.pyplot as plt
 # Load your trained model
-#
+import numpy as np
 import os
 import dlib
 import cv2
@@ -82,13 +82,16 @@ def prediction(model, video_path, folder_name):
                     predict=1
                 else:
                     continue
-
+                
                 # Draw the label on the cropped image
                 cv2.putText(crop_img, label, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
                 # Save the cropped image with the label
                 cv2.imwrite(os.path.join(result_path, f'frame{count}_{i}.jpg'), crop_img)
                 print(f"Writing frame: {count}")
+
+    
+    
     if predict == 1:
       print("image is real")
       result = "Real"
@@ -96,6 +99,8 @@ def prediction(model, video_path, folder_name):
       print("Image not real")
       result = "Fake"
     return result
+    
+
     cap.release()
     cv2.destroyAllWindows()
 
