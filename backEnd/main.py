@@ -20,34 +20,36 @@ class LoginDetail(BaseModel):
     title: str
     content: str
 
-# login_data = [
-#     {"title": "title1", "content": "content1", "id": 1},
-#     {"title": "title2", "content": "content2", "id": 2}
-# ]
+login_data = [
+    {"title": "title1", "content": "content1", "id": 1},
+    {"title": "title2", "content": "content2", "id": 2}
+]
 
 
 def generate_post_id():
     return randrange(0, 1000000)
 
 
-# class SignupDetail(BaseModel):
-#     title: str
-#     content: str
-# signup_data=[]
-# @app.post("/signup")
-# async def signup(signupdetails:SignupDetail):
-#     signup_data_dict=SignupDetail.dict()
-#     signup_data_dict["id"]=generate_post_id()
-#     signup_data.append(signup_data_dict)
-#     return{"message":"signup sucessfull","data":signup_data}
+class SignupDetail(BaseModel):
+    title: str
+    content: str
+
+signup_data=[]
+
+@app.post("/signup")
+async def signup(signupdetails:SignupDetail):
+    signup_data_dict=signupdetails.dict()
+    signup_data_dict["id"]=generate_post_id()
+    signup_data.append(signup_data_dict)
+    return{"message":"signup sucessfull","data":signup_data}
 
 
-# @app.post("/login")
-# async def login(login_details: LoginDetail):
-#     login_data_dict = login_details.dict()
-#     login_data_dict["id"] = generate_post_id()
-#     login_data.append(login_data_dict)
-#     return {"message": "Login sucessfull"}
+@app.post("/login")
+async def login(login_details: LoginDetail):
+    login_data_dict = login_details.dict()
+    login_data_dict["id"] = generate_post_id()
+    login_data.append(login_data_dict)
+    return {"message": "Login sucessfull"}
 
 # @app.get("/data")
 # async def get_data():
