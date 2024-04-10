@@ -21,13 +21,8 @@ const UploadForm = () => {
         setPredictionResult(data.details); // Assuming data.details contains the prediction result
       })
       .catch(error => console.error('Error fetching prediction result:', error));
-
-    // Cleanup function to reset the prediction result when the component is unmounted
-    return () => {
-      setPredictionResult('');
-    };
   }, []); // Empty dependency array to run the effect only once when the component mounts
-
+// done
   return (
     <Container>
       <UploadVideo />
