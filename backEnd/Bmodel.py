@@ -14,6 +14,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 # from keras.preprocessing.image import img_to_array
 print(os.getcwd())  # Print the current working directory
 from tensorflow.keras.preprocessing.image import img_to_array
+from videoplay import videoPlay
 # import tensorflow as tf
 # print(tf.__version__)
 
@@ -88,6 +89,7 @@ def prediction(model, video_path, folder_name):
                 # Save the cropped image with the label
                 cv2.imwrite(os.path.join(result_path, f'frame{count}_{i}.jpg'), crop_img)
                 print(f"Writing frame: {count}")
+    videoPlay(video_path,predict)            
     if predict == 1:
       print("image is real")
       result = "Real"
@@ -95,6 +97,7 @@ def prediction(model, video_path, folder_name):
       print("Image not real")
       result = "Fake"
     return result
+    
     cap.release()
     cv2.destroyAllWindows()
 
