@@ -1,7 +1,7 @@
 
 import matplotlib.pyplot as plt
 # Load your trained model
-#
+import numpy as np
 import os
 import dlib
 import cv2
@@ -82,7 +82,7 @@ def prediction(model, video_path, folder_name):
                     predict=1
                 else:
                     continue
-
+                
                 # Draw the label on the cropped image
                 cv2.putText(crop_img, label, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
@@ -98,6 +98,7 @@ def prediction(model, video_path, folder_name):
       result = "Fake"
     return result
     
+
     cap.release()
     cv2.destroyAllWindows()
 
