@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "./Button";
 import LoadingScreen from "./LoadingScreen";
 import styled from "styled-components";
+import VideoComp from "./VideoComp";
 
 const Modal = styled.div`
   position: fixed;
@@ -38,6 +39,8 @@ export default function UploadVideo() {
   const [showInput, setShowInput] = useState(false);
   const [videoURL, setVideoURL] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [hasResult, setHasResult] = useState(false);
+
 
   function handleFileChange(event) {
     setSelectedFile(event.target.files[0]);
@@ -64,10 +67,10 @@ export default function UploadVideo() {
           throw new Error("Network response was not ok");
         }
         console.log("File uploaded successfully:");
-        alert("the selected video has been processed...");
         setShowInput(false);
         setVideoURL("");
         setIsLoading(false);
+        setHasResult(true)
       })
       .catch((error) => {
         console.error("Error uploading file:", error);
@@ -76,6 +79,8 @@ export default function UploadVideo() {
   }
 
   return (
+    hasResult?
+    <VideoComp/>:
     <div>
       {showInput ? (
         <Modal>
