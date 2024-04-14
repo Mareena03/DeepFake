@@ -1,25 +1,49 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import styled from "styled-components"
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import srrc from "/MainProject/DeepFake/backEnd/uploads/videoFile.mp4"
 
-const VideoCont=styled.div`
-background-color:"black"`;
+// Styled components for better organization
+const VideoContainer = styled.div`
+  text-align:center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
 
-export default function VideoComp(){
+const VideoPlayer = styled.video`
+  width: 70%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+`;
 
-const [predictionResult,setPredictionResult]=useState(null)
-useEffect(()=>{
+const ContentWrapper = styled.div`
+padding: 20px;
+`;
+
+const Heading = styled.h2`
+  margin-bottom: 10px;
+`;
+
+// Main component
+export default function VideoComp() {
+  const [predictionResult, setPredictionResult] = useState(null);
+
+  useEffect(() => {
     fetch("http://localhost:8000/data")
-    .then(res => res.json())
-    .then(data => {
-    setPredictionResult(data.details); // Assuming data.details contains the prediction result
-})
-.catch(error => console.error('Error fetching prediction result:', error));
-},[predictionResult])
+      .then((res) => res.json())
+      .then((data) => {
+        setPredictionResult(data.details); // Assuming data.details contains the prediction result
+      })
+      .catch((error) =>
+        console.error("Error fetching prediction result:", error)
+      );
+  }, [predictionResult]);
 
-    return(
-        <VideoCont>
-            <h2>{predictionResult}</h2>
-        </VideoCont>
-    )
+  return (
+    <VideoContainer>
+        <ContentWrapper>
+            <Heading><h1>{predictionResult}</h1></Heading>
+        </ContentWrapper>
+        <VideoPlayer src={srrc} controls></VideoPlayer>
+    </VideoContainer>
+  );
 }
