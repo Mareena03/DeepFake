@@ -1,26 +1,35 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import srrc from "/MainProject/DeepFake/backEnd/uploads/videoFile.mp4"
+import srrc from "/MainProject/DeepFake/backEnd/Video/output_video.mp4";
 
 // Styled components for better organization
 const VideoContainer = styled.div`
-  text-align:center;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  padding: 20px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 `;
 
 const VideoPlayer = styled.video`
-  width: 70%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 20px;
 `;
 
 const ContentWrapper = styled.div`
-padding: 20px;
+  padding: 20px;
 `;
 
 const Heading = styled.h2`
-  margin-bottom: 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
 `;
 
 // Main component
@@ -40,10 +49,10 @@ export default function VideoComp() {
 
   return (
     <VideoContainer>
-        <ContentWrapper>
-            <Heading><h1>{predictionResult}</h1></Heading>
-        </ContentWrapper>
-        <VideoPlayer src={srrc} controls></VideoPlayer>
+      <ContentWrapper>
+        <Heading>{predictionResult}</Heading>
+      </ContentWrapper>
+      <VideoPlayer src={srrc} controls autoPlay loop></VideoPlayer>
     </VideoContainer>
   );
 }
