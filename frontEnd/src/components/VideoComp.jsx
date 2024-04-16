@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import srrc from "/MainProject/DeepFake/backEnd/Video/output_video.mp4";
 
