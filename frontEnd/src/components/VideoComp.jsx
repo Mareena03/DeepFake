@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import srrc from "/MainProject/DeepFake/backEnd/Video/output_video.mp4";
+import srrc from "/Users/nikhi/OneDrive/Documents/DeepFake/backEnd/Video/output_video.mp4";
+// import srrc from "/Users/nikhi/OneDrive/Documents/DeepFake/backEnd/Video/output_video.mp4";
 
 // Styled components for better organization
 const VideoContainer = styled.div`
