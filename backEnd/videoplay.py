@@ -1,6 +1,6 @@
 import dlib
 import cv2
-
+from moviepy.editor import VideoFileClip
 def videoPlay(video_path, predict):
     # Load the face detector
     detector = dlib.get_frontal_face_detector()
@@ -46,8 +46,27 @@ def videoPlay(video_path, predict):
 
         # Write the frame to the output video file
         out.write(frame)
-
+    convert_avi_to_mp4('Video/output_video.mp4','Video/output_video.mp4')
     # Release video capture and writer
     cap.release()
     out.release()
-    cv2.destroyAllWindows() cszcacsc
+    cv2.destroyAllWindows() 
+
+
+
+def convert_avi_to_mp4(input_file, output_file):
+    try:
+        # Load the AVI file
+        video = VideoFileClip(input_file)
+        
+        # Write the video to an MP4 file
+        video.write_videofile(output_file, codec='libx264', audio_codec='aac')
+        
+        print("Conversion successful!")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+# Example usage:
+input_file = 'input.avi'
+output_file = 'Video/output_video.mp4'
+convert_avi_to_mp4(input_file, output_file)
