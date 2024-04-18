@@ -50,4 +50,4 @@ def videoPlay(video_path, predict):
     # Release video capture and writer
     cap.release()
     out.release()
-    cv2.destroyAllWindows()
+    cv2.destroyAllWindows() cszcacsc
