@@ -2,7 +2,6 @@ import styled from "styled-components";
 import TypingText from "./components/TypingText";
 import UploadForm from "./components/UploadForm";
 import { useState } from "react";
-import SketchfabModel from "./components/SketchfabModel";
 import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
 
@@ -95,9 +94,7 @@ function App() {
   } else {
     return (
       <>
-        <SketchfabModel>
-          <UploadForm />
-        </SketchfabModel>
+        <UploadForm />
       </>
     );
   }
