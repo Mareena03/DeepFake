@@ -14,7 +14,7 @@ def videoPlay(video_path, predict):
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
     # Define the codec and create VideoWriter object
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # MP4 video codec
+    fourcc = cv2.VideoWriter_fourcc(*'avc1') # MP4 video codec
     out = cv2.VideoWriter('Video/output_video.mp4', fourcc, fps, (frame_width, frame_height))
 
     while True:
