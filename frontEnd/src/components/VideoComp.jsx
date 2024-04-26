@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import srrc from "/Users/nikhi/OneDrive/Documents/DeepFake/backEnd/Video/output_video.mp4";
+// import srrc from "/Users/nikhi/OneDrive/Documents/DeepFake/backEnd/Video/output_video.mp4";
 // import srrc from "/MainProject/DeepFake/backEnd/Video/output_video.mp4";
 
 // Styled components for better organization
@@ -53,7 +53,7 @@ export default function VideoComp() {
       <ContentWrapper>
         <Heading>{predictionResult}</Heading>
       </ContentWrapper>
-      <VideoPlayer src={srrc} controls autoPlay loop></VideoPlayer>
+      <VideoPlayer controls autoPlay loop></VideoPlayer>
     </VideoContainer>
   );
 }
