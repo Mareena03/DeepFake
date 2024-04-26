@@ -6,7 +6,25 @@ import shutil
 import os
 from Bmodel import prediction
 import keras as tf
+import psycopg2
+from psycopg2.extras import RealDictCursor 
+
+
 app = FastAPI()
+
+#setting up a connection
+while True:
+    try:
+        conn=psycopg2.connect(host="localhost",database="DeepReality",user="postgres",password="postgress@123",cursor_factory=RealDictCursor)
+        cursor=conn.cursor()
+        print("keriyada makkale databaseil")
+        break;
+    except Exception as error:
+        print("connecting to database failed")
+        print("Error was :",error)
+
+
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -16,44 +34,37 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class LoginDetail(BaseModel):
-    title: str
-    content: str
-
-login_data = [
-    {"title": "title1", "content": "content1", "id": 1},
-    {"title": "title2", "content": "content2", "id": 2}
-]
-
-
 def generate_post_id():
     return randrange(0, 1000000)
 
-
-class SignupDetail(BaseModel):
+class Users(BaseModel):
     title: str
     content: str
 
-signup_data=[]
 
-@app.post("/signup")
-async def signup(signupdetails:SignupDetail):
-    signup_data_dict=signupdetails.dict()
-    signup_data_dict["id"]=generate_post_id()
-    signup_data.append(signup_data_dict)
-    return{"message":"signup sucessfull","data":signup_data}
 
 
 @app.post("/login")
-async def login(login_details: LoginDetail):
-    login_data_dict = login_details.dict()
-    login_data_dict["id"] = generate_post_id()
-    login_data.append(login_data_dict)
-    return {"message": "Login sucessfull"}
+async def login(users: Users):
+    cursor.execute("""SELECT * FROM users WHERE username=%s AND password=%s""", (users.title, users.content))
+    newlogin = cursor.fetchall()
+    return {"details": newlogin}
 
-# @app.get("/data")
-# async def get_data():
-#     return {"details": login_data}
+
+
+
+@app.post("/signup")
+async def signup(users: Users):
+    cursor.execute(""" INSERT INTO users (username,password) VALUES (%s,%s) RETURNING * """,(users.title,users.content))
+    newsignup=cursor.fetchone()
+    conn.commit()
+    return {"message": "SignUp sucessfull","Details":newsignup}
+
+@app.get("/data")
+async def get_data():
+    cursor.execute("""SELECT * FROM USERS """)
+    logindata=cursor.fetchall()
+    return {"details": logindata}
 
 # ..........................................................................
 # video_data=[]

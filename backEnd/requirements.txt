@@ -4,5 +4,5 @@ dlib
 numpy
 opencv-python
 tensorflow==2.12.0
-
+psycopg2
 

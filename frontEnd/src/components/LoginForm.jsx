@@ -61,10 +61,15 @@ export default function LoginForm() {
         return res.json();
       })
       .then((data) => {
-        console.log(data); // Log response from backend
-      })
-      .catch((error) => {
-        console.error("Error:", error); // Handle errors
+        if (data.details.length > 0) {
+          // User is authenticated, perform any necessary actions
+          console.log("User authenticated");
+          // You can redirect the user to another page or perform other actions here
+        } else {
+          // User authentication failed, display an error message or take appropriate actions
+          console.log("Authentication failed");
+          // You can display an error message or take other actions here
+        }
       });
   };
 
