@@ -4,34 +4,40 @@ import LoadingScreen from "./LoadingScreen";
 import styled from "styled-components";
 import VideoComp from "./VideoComp";
 
-const Modal = styled.div`
+const ModalOverlay = styled.div`
   position: fixed;
-  z-index: 1;
-  left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+`;
+
+const Modal = styled.div`
+  background-color: #f1f1f1;
+  color: #333;
+  border-radius: 10px;
+  border: 2px dashed #007bff;
+  box-shadow: 0 8px 16px rgba(0, 0, 255, 0.1);
   padding: 20px;
-  border-radius: 10px; /* Rounded corners */
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
 `;
 
 const ModalContent = styled.div`
-  margin: 15% auto;
-  padding: 20px;
-  width: 50%;
-  border-radius: 10px;
-  border: 2px dashed #007bff; /* Blue dashed border */
-  background-color: #f1f1f1;
-  color: #333;
-  cursor: pointer;
-  box-shadow: 0 8px 16px rgba(0, 0, 255, 0.1); /* Blue shadow effect */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const VideoPreview = styled.video`
   width: 60%;
+  max-width: 100%;
 `;
 
 export default function UploadVideo() {
@@ -40,7 +46,7 @@ export default function UploadVideo() {
   const [videoURL, setVideoURL] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hasResult, setHasResult] = useState(false);
-
+  const [videoData, setVideoData] = useState(null);
 
   function handleFileChange(event) {
     setSelectedFile(event.target.files[0]);
@@ -52,12 +58,9 @@ export default function UploadVideo() {
       console.error("No file selected.");
       return;
     }
-
     setIsLoading(true);
-
     const formData = new FormData();
     formData.append("video", selectedFile, "videoFile.mp4");
-
     fetch("http://localhost:8000/uploadVideo", {
       method: "POST",
       body: formData,
@@ -66,11 +69,15 @@ export default function UploadVideo() {
         if (!res.ok) {
           throw new Error("Network response was not ok");
         }
-        console.log("File uploaded successfully:");
+        return res.json();
+      })
+      .then((data) => {
+        console.log("File uploaded successfully:", data);
         setShowInput(false);
         setVideoURL("");
         setIsLoading(false);
-        setHasResult(true)
+        setHasResult(true);
+        setVideoData(data.prediction_result);
       })
       .catch((error) => {
         console.error("Error uploading file:", error);
@@ -78,14 +85,14 @@ export default function UploadVideo() {
       });
   }
 
-  return (
-    hasResult?
-    <VideoComp/>:
+  return hasResult ? (
+    <VideoComp videoData={videoData} />
+  ) : (
     <div>
-      {showInput ? (
-        <Modal>
-          <ModalContent>
-            <span style={{ float: "right" }}>
+      {showInput && (
+        <ModalOverlay>
+          <Modal>
+            <span style={{ alignSelf: "flex-end" }}>
               <Button
                 bgcolor="transparent"
                 textcolor="red"
@@ -98,45 +105,54 @@ export default function UploadVideo() {
                 X
               </Button>
             </span>
-            <label htmlFor="videoFile">Select Video File:</label>
-            <br />
-            <br />
-            <input
-              type="file"
-              id="videoFile"
-              name="videoFile"
-              accept="video/*"
-              onChange={handleFileChange}
-              required
-            />
-            <br />
-            <br />
-            {videoURL && (
-              <div
-                style={{
-                  justifyContent: "center",
-                  textAlign: "center",
-                  marginBottom: "25px",
-                }}
-              >
-                <VideoPreview controls src={videoURL} />
-                <br />
-                <br />
-                <Button bgcolor="red" textcolor="white" onClick={handleSubmit}>
-                  Upload
-                </Button>
-              </div>
-            )}
-          </ModalContent>
-        </Modal>
-      ) : (
-        <Button bgcolor="#87A093" textcolor="white" onClick={() => setShowInput(true)}>
+            <ModalContent>
+              <label htmlFor="videoFile">Select Video File:</label>
+              <br />
+              <br />
+              <input
+                type="file"
+                id="videoFile"
+                name="videoFile"
+                accept="video/*"
+                onChange={handleFileChange}
+                required
+              />
+              <br />
+              <br />
+              {videoURL && (
+                <div
+                  style={{
+                    justifyContent: "center",
+                    textAlign: "center",
+                    marginBottom: "25px",
+                  }}
+                >
+                  <VideoPreview controls src={videoURL} />
+                  <br />
+                  <br />
+                  <Button
+                    bgcolor="red"
+                    textcolor="white"
+                    onClick={handleSubmit}
+                  >
+                    Upload
+                  </Button>
+                </div>
+              )}
+            </ModalContent>
+          </Modal>
+        </ModalOverlay>
+      )}
+      {!showInput && (
+        <Button
+          bgcolor="#87A093"
+          textcolor="white"
+          onClick={() => setShowInput(true)}
+        >
           Upload Video
         </Button>
       )}
-      {isLoading && (
-        <LoadingScreen/>
-      )}
+      {isLoading && <LoadingScreen />}
     </div>
   );
 }

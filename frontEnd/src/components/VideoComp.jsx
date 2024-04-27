@@ -1,7 +1,6 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-// import srrc from "/Users/nikhi/OneDrive/Documents/DeepFake/backEnd/Video/output_video.mp4";
-// import srrc from "/MainProject/DeepFake/backEnd/Video/output_video.mp4";
 
 // Styled components for better organization
 const VideoContainer = styled.div`
@@ -34,19 +33,25 @@ const Heading = styled.h2`
 `;
 
 // Main component
-export default function VideoComp() {
+export default function VideoComp({ videoData }) {
   const [predictionResult, setPredictionResult] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/data")
-      .then((res) => res.json())
-      .then((data) => {
-        setPredictionResult(data.details); // Assuming data.details contains the prediction result
-      })
-      .catch((error) =>
-        console.error("Error fetching prediction result:", error)
-      );
-  }, [predictionResult]);
+    // Check if videoData is provided
+    if (videoData) {
+      setPredictionResult(videoData);
+    } else {
+      // If videoData is not provided, fetch it from the backend
+      fetch("http://localhost:8000/data")
+        .then((res) => res.json())
+        .then((data) => {
+          setPredictionResult(data.details || "No prediction result available");
+        })
+        .catch((error) =>
+          console.error("Error fetching prediction result:", error)
+        );
+    }
+  }, [videoData]);
 
   return (
     <VideoContainer>
