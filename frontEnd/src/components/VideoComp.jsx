@@ -16,13 +16,13 @@ const VideoContainer = styled.div`
 `;
 
 const VideoPlayer = styled.video`
-  width: 100%;
-  max-width: 800px;
+  height: 100%;
+  width: 40%;
   border-radius: 20px;
 `;
 
 const ContentWrapper = styled.div`
-  padding: 20px;
+  padding: 10px;
 `;
 
 const Heading = styled.h2`
