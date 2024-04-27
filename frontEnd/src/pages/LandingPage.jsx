@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createGlobalStyle, keyframes } from "styled-components";
 import styled from "styled-components";
-import LoginAndSignupModel from "./LoginAndSignupModel";
+import LoginAndSignupModel from "../components/LoginAndSignupModel";
 
 // Define global styles
 const GlobalStyle = createGlobalStyle`
