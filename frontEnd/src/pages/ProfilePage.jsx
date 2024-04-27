@@ -1,7 +1,15 @@
-export default function ProfilePage() {
+import { useLocation } from "react-router-dom";
+
+const ProfilePage = () => {
+  const location = useLocation();
+  const { username } = location.state || {};
+
   return (
-    <>
-      <h1>hello world</h1>
-    </>
+    <div>
+      <h1>Profile Page</h1>
+      {username && <p>Welcome, {username}!</p>}
+    </div>
   );
-}
+};
+
+export default ProfilePage;

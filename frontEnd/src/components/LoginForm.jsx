@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "./Button";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Modal = styled.div`
   position: fixed;
@@ -30,6 +31,7 @@ export default function LoginForm() {
   const [showContent, setShowContent] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const showLogin = () => {
     setShowContent(true);
@@ -64,6 +66,7 @@ export default function LoginForm() {
         if (data.details.length > 0) {
           // User is authenticated, perform any necessary actions
           console.log("User authenticated");
+          navigate("/profile", { state: { username } });
           // You can redirect the user to another page or perform other actions here
         } else {
           // User authentication failed, display an error message or take appropriate actions
