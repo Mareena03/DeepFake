@@ -5,12 +5,6 @@ import styled from "styled-components";
 import VideoComp from "./VideoComp";
 
 const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +12,7 @@ const ModalOverlay = styled.div`
 `;
 
 const Modal = styled.div`
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1;
   color: #333;
   border-radius: 10px;
   border: 2px dashed #007bff;
@@ -26,7 +20,7 @@ const Modal = styled.div`
   padding: 20px;
   max-width: 90%;
   max-height: 90%;
-  overflow: auto;
+  overflow: auto; */
 `;
 
 const ModalContent = styled.div`
@@ -37,7 +31,7 @@ const ModalContent = styled.div`
 
 const VideoPreview = styled.video`
   width: 60%;
-  max-width: 100%;
+  max-width: 90%;
 `;
 
 export default function UploadVideo() {
@@ -89,8 +83,11 @@ export default function UploadVideo() {
       <ModalOverlay>
         <Modal>
           <ModalContent>
-            <label style={{ fontSize: "30px" }} htmlFor="videoFile">
-              Select Video File:
+            <label
+              style={{ fontSize: "30px", color: "white" }}
+              htmlFor="videoFile"
+            >
+              Select The Video :
             </label>
             <br />
             <br />

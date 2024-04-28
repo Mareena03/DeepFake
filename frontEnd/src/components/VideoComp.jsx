@@ -16,8 +16,8 @@ const VideoContainer = styled.div`
 `;
 
 const VideoPlayer = styled.video`
-  height: 30%;
-  width: 30%;
+  max-height: 130%;
+  max-width: 130%;
   border-radius: 20px;
 `;
 
@@ -26,7 +26,7 @@ const ContentWrapper = styled.div``;
 const Heading = styled.h2`
   text-decoration: underline;
   text-align: center;
-  font-size: 90px;
+  font-size: 40px;
   font-weight: bold;
   color: #fff;
   margin-bottom: 20px;
