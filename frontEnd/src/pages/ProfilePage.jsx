@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import UploadVideo from "../components/UploadVideo";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   background-color: black;
@@ -17,6 +18,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.h1`
+  cursor: pointer;
   font-size: 30px;
   margin-top: 20px; /* Add margin to the top */
   margin-bottom: 20px; /* Add margin to the bottom */
@@ -37,7 +39,6 @@ const LeftBar = styled.div`
 const Body = styled.div`
   flex: 10;
   display: flex;
-  background-color: red;
   justify-content: center;
   align-items: center;
 `;
@@ -58,14 +59,19 @@ const H3 = styled.h3`
 `;
 
 const ProfilePage = () => {
+  function handleClick() {
+    navigate("/");
+  }
+
   const location = useLocation();
   const [onaccount, setOnaccount] = useState(false);
   const { username } = location.state || {};
+  const navigate = useNavigate();
 
   return (
     <>
       <Container>
-        <Header>Deep Reality</Header>
+        <Header onClick={handleClick}>Deep Reality</Header>
         <BodyContainer>
           <Body>
             <UploadVideo></UploadVideo>

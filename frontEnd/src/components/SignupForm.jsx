@@ -74,7 +74,7 @@ export default function SignupForm() {
         bradius="100px"
         bwidth="45%"
         bgcolor="green"
-        textcolor="#fff"
+        textcolor="000000"
         type="button"
         id="loginSubmit"
         onClick={showSignup}
@@ -96,9 +96,11 @@ export default function SignupForm() {
                 X
               </Button>
             </span>
-            <h2 style={{ textAlign: "left", color: "black" }}>Sign Up</h2>
+            <h2 style={{ textAlign: "left", color: "#000" }}>Sign Up</h2>
             <form>
-              <label style={{ textAlign: "left" }}>Username:</label>
+              <label style={{ textAlign: "left", color: "#000" }}>
+                Username:
+              </label>
               <input
                 style={{
                   width: "calc(100% - 24px)",
@@ -108,11 +110,12 @@ export default function SignupForm() {
                 type="text"
                 id="pa"
                 value={username}
-                placeholder="username:"
                 onChange={(e) => setUsername(e.target.value)}
               ></input>
               <br />
-              <label style={{ textAlign: "left" }}>Password:</label>
+              <label style={{ textAlign: "left", color: "#000" }}>
+                Password:
+              </label>
               <input
                 style={{
                   width: "calc(100% - 24px)",
@@ -122,7 +125,6 @@ export default function SignupForm() {
                 type="password"
                 id="username"
                 value={password}
-                placeholder="password"
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
               <br />

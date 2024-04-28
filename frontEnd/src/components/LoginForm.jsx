@@ -33,11 +33,11 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const showLogin = () => {
+  const showSignup = () => {
     setShowContent(true);
   };
 
-  const closeLogin = () => {
+  const closeSignup = () => {
     setShowContent(false);
   };
   const handleLogin = () => {
@@ -63,16 +63,10 @@ export default function LoginForm() {
         return res.json();
       })
       .then((data) => {
-        if (data.details.length > 0) {
-          // User is authenticated, perform any necessary actions
-          console.log("User authenticated");
-          navigate("/profile", { state: { username } });
-          // You can redirect the user to another page or perform other actions here
-        } else {
-          // User authentication failed, display an error message or take appropriate actions
-          console.log("Authentication failed");
-          // You can display an error message or take other actions here
-        }
+        console.log(data); // Log response from backend
+      })
+      .catch((error) => {
+        console.error("Error:", error); // Handle errors
       });
   };
 
@@ -82,10 +76,10 @@ export default function LoginForm() {
         bradius="100px"
         bwidth="45%"
         bgcolor="green"
-        textcolor="#fff"
+        textcolor="000000"
         type="button"
         id="loginSubmit"
-        onClick={showLogin}
+        onClick={showSignup}
       >
         Login
       </Button>
@@ -99,12 +93,12 @@ export default function LoginForm() {
                 border="1px solid"
                 bgcolor="transparent"
                 textcolor="red"
-                onClick={closeLogin}
+                onClick={closeSignup}
               >
                 X
               </Button>
             </span>
-            <h2 style={{ textAlign: "left", color: "black" }}>Login</h2>
+            <h2 style={{ textAlign: "left" }}>Login</h2>
             <form>
               <label style={{ textAlign: "left" }}>Username:</label>
               <input
@@ -116,7 +110,6 @@ export default function LoginForm() {
                 type="text"
                 id="pa"
                 value={username}
-                placeholder="username"
                 onChange={(e) => setUsername(e.target.value)}
               ></input>
               <br />
@@ -130,18 +123,12 @@ export default function LoginForm() {
                 type="password"
                 id="username"
                 value={password}
-                placeholder="password"
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
               <br />
               <div>
-                <Button
-                  textcolor="#000"
-                  bgcolor="#00FF00"
-                  type="button"
-                  onClick={handleLogin}
-                >
-                  Login
+                <Button bgcolor="#00FF00" type="button" onClick={handleLogin}>
+                  Sign Up
                 </Button>
               </div>
             </form>
