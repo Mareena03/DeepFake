@@ -87,7 +87,7 @@ export default function LoginForm() {
       {showContent && (
         <Modal>
           <ModalContent>
-            <span style={{ float: "right" }}>
+            <span style={{ float: "right", color: "#000" }}>
               {/* Use a function reference, not a function call */}
               <Button
                 bradius="100px"
@@ -99,9 +99,11 @@ export default function LoginForm() {
                 X
               </Button>
             </span>
-            <h2 style={{ textAlign: "left" }}>Login</h2>
+            <h2 style={{ textAlign: "left", color: "#000" }}>Login</h2>
             <form>
-              <label style={{ textAlign: "left" }}>Username:</label>
+              <label style={{ textAlign: "left", color: "#000" }}>
+                Username:
+              </label>
               <input
                 style={{
                   width: "calc(100% - 24px)",
@@ -114,7 +116,9 @@ export default function LoginForm() {
                 onChange={(e) => setUsername(e.target.value)}
               ></input>
               <br />
-              <label style={{ textAlign: "left" }}>Password:</label>
+              <label style={{ textAlign: "left", color: "#000" }}>
+                Password:
+              </label>
               <input
                 style={{
                   width: "calc(100% - 24px)",
