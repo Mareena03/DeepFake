@@ -59,7 +59,8 @@ export default function VideoComp({ videoData }) {
       <ContentWrapper>
         <Heading>{predictionResult}</Heading>
       </ContentWrapper>
-      <VideoPlayer controls autoPlay loop></VideoPlayer>
+      <VideoPlayer src={srrc} controls autoPlay loop></VideoPlayer>
+      <h1>hello</h1>
     </VideoContainer>
   );
 }
