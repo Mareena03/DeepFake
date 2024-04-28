@@ -6,7 +6,7 @@ import srrc from "/MainProject/DeepFake/backEnd/Video/output_video.mp4";
 
 // Styled components for better organization
 const VideoContainer = styled.div`
-  background-color: #000;
+  /* background-color: #000; */
   padding: 20px;
   width: 60%;
   display: flex;
@@ -16,18 +16,17 @@ const VideoContainer = styled.div`
 `;
 
 const VideoPlayer = styled.video`
-  height: 100%;
-  width: 100%;
+  height: 30%;
+  width: 30%;
   border-radius: 20px;
 `;
 
-const ContentWrapper = styled.div`
-  padding: 10px;
-`;
+const ContentWrapper = styled.div``;
 
 const Heading = styled.h2`
+  text-decoration: underline;
   text-align: center;
-  font-size: 24px;
+  font-size: 90px;
   font-weight: bold;
   color: #fff;
   margin-bottom: 20px;
@@ -57,7 +56,9 @@ export default function VideoComp({ videoData }) {
   return (
     <VideoContainer>
       <ContentWrapper>
-        <Heading>{predictionResult}</Heading>
+        <Heading>
+          The Result : <span style={{ color: "red" }}>{predictionResult}</span>
+        </Heading>
       </ContentWrapper>
       <VideoPlayer src={srrc} controls autoPlay loop></VideoPlayer>
     </VideoContainer>

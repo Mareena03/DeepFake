@@ -6,6 +6,8 @@ import shutil
 import os
 from Bmodel import prediction
 import keras as tf
+import psycopg2
+from psycopg2.extras import RealDictCursor 
 app = FastAPI()
 
 app.add_middleware(
@@ -15,6 +17,16 @@ app.add_middleware(
     allow_methods=["POST", "GET"],
     allow_headers=["*"],
 )
+
+while True:
+    try:
+        conn=psycopg2.connect(host="localhost",database="DeepReality",user="postgres",password="postgress@123",cursor_factory=RealDictCursor)
+        cursor=conn.cursor()
+        print("keriyada makkale databaseil")
+        break;
+    except Exception as error:
+        print("connecting to database failed")
+        print("Error was :",error)
 
 class LoginDetail(BaseModel):
     title: str

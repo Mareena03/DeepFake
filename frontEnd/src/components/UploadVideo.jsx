@@ -10,7 +10,7 @@ const ModalOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,7 +42,6 @@ const VideoPreview = styled.video`
 
 export default function UploadVideo() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [showInput, setShowInput] = useState(false);
   const [videoURL, setVideoURL] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hasResult, setHasResult] = useState(false);
@@ -73,7 +72,6 @@ export default function UploadVideo() {
       })
       .then((data) => {
         console.log("File uploaded successfully:", data);
-        setShowInput(false);
         setVideoURL("");
         setIsLoading(false);
         setHasResult(true);
@@ -84,74 +82,49 @@ export default function UploadVideo() {
         setIsLoading(false);
       });
   }
-
   return hasResult ? (
     <VideoComp videoData={videoData} />
   ) : (
     <div>
-      {showInput && (
-        <ModalOverlay>
-          <Modal>
-            <span style={{ alignSelf: "flex-end" }}>
-              <Button
-                bgcolor="transparent"
-                textcolor="red"
-                onClick={() => {
-                  setShowInput(false);
-                  setSelectedFile(null);
-                  setVideoURL("");
+      <ModalOverlay>
+        <Modal>
+          <ModalContent>
+            <label style={{ fontSize: "30px" }} htmlFor="videoFile">
+              Select Video File:
+            </label>
+            <br />
+            <br />
+            <br />
+            <br />
+            <input
+              type="file"
+              id="videoFile"
+              name="videoFile"
+              accept="video/*"
+              onChange={handleFileChange}
+              required
+            />
+            <br />
+            <br />
+            {videoURL && (
+              <div
+                style={{
+                  justifyContent: "center",
+                  textAlign: "center",
+                  marginBottom: "25px",
                 }}
               >
-                X
-              </Button>
-            </span>
-            <ModalContent>
-              <label htmlFor="videoFile">Select Video File:</label>
-              <br />
-              <br />
-              <input
-                type="file"
-                id="videoFile"
-                name="videoFile"
-                accept="video/*"
-                onChange={handleFileChange}
-                required
-              />
-              <br />
-              <br />
-              {videoURL && (
-                <div
-                  style={{
-                    justifyContent: "center",
-                    textAlign: "center",
-                    marginBottom: "25px",
-                  }}
-                >
-                  <VideoPreview controls src={videoURL} />
-                  <br />
-                  <br />
-                  <Button
-                    bgcolor="red"
-                    textcolor="white"
-                    onClick={handleSubmit}
-                  >
-                    Upload
-                  </Button>
-                </div>
-              )}
-            </ModalContent>
-          </Modal>
-        </ModalOverlay>
-      )}
-      {!showInput && (
-        <Button
-          bgcolor="#87A093"
-          textcolor="white"
-          onClick={() => setShowInput(true)}
-        >
-          Upload Video
-        </Button>
-      )}
+                <VideoPreview controls src={videoURL} />
+                <br />
+                <br />
+                <Button bgcolor="red" textcolor="white" onClick={handleSubmit}>
+                  Upload
+                </Button>
+              </div>
+            )}
+          </ModalContent>
+        </Modal>
+      </ModalOverlay>
       {isLoading && <LoadingScreen />}
     </div>
   );
