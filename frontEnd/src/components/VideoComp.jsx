@@ -1,14 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
-// import srrc from "/Users/nikhi/OneDrive/Documents/DeepFake/backEnd/Video/output_video.mp4";
 import srrc from "/MainProject/DeepFake/backEnd/Video/output_video.mp4";
 
 // Styled components for better organization
 const VideoContainer = styled.div`
-  /* background-color: #000; */
   padding: 20px;
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,8 +14,8 @@ const VideoContainer = styled.div`
 `;
 
 const VideoPlayer = styled.video`
-  max-height: 130%;
-  max-width: 130%;
+  max-height: 100%;
+  max-width: 100%;
   border-radius: 20px;
 `;
 
@@ -32,16 +30,15 @@ const Heading = styled.h2`
   margin-bottom: 20px;
 `;
 
-// Main component
-export default function VideoComp({ videoData }) {
-  const [predictionResult, setPredictionResult] = useState(null);
-
+export default function VideoComp({
+  videoData,
+  predictionResult,
+  setPredictionResult,
+}) {
   useEffect(() => {
-    // Check if videoData is provided
     if (videoData) {
       setPredictionResult(videoData);
     } else {
-      // If videoData is not provided, fetch it from the backend
       fetch("http://localhost:8000/data")
         .then((res) => res.json())
         .then((data) => {
@@ -51,7 +48,7 @@ export default function VideoComp({ videoData }) {
           console.error("Error fetching prediction result:", error)
         );
     }
-  }, [videoData]);
+  }, [videoData, setPredictionResult]);
 
   return (
     <VideoContainer>

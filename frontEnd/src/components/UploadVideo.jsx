@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Button from "./Button";
 import LoadingScreen from "./LoadingScreen";
@@ -34,11 +35,15 @@ const VideoPreview = styled.video`
   max-width: 90%;
 `;
 
-export default function UploadVideo() {
+export default function UploadVideo({
+  hasResult,
+  setHasResult,
+  predictionResult,
+  setPredictionResult,
+}) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [videoURL, setVideoURL] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [hasResult, setHasResult] = useState(false);
   const [videoData, setVideoData] = useState(null);
 
   function handleFileChange(event) {
@@ -76,8 +81,13 @@ export default function UploadVideo() {
         setIsLoading(false);
       });
   }
+
   return hasResult ? (
-    <VideoComp videoData={videoData} />
+    <VideoComp
+      videoData={videoData}
+      predictionResult={predictionResult}
+      setPredictionResult={setPredictionResult}
+    />
   ) : (
     <div>
       <ModalOverlay>

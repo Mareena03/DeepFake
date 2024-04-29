@@ -1,7 +1,6 @@
 // import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import UploadVideo from "../components/UploadVideo";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from "../components/Button";
 
@@ -31,6 +30,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.h1`
+  padding-bottom: 0px;
   color: white;
   cursor: pointer;
   font-size: 44px;
@@ -64,59 +64,67 @@ const RightBody = styled.div`
   flex: 1;
 `;
 const Text = styled.h1`
+  padding-bottom: 10px;
   font-size: 20px;
   color: white;
 `;
 const TextContainer = styled.div`
+  padding: 20px;
   /* background-color: red; */
   display: flex; /* Add display: flex; */
   justify-content: flex-start; /* Align items to the left */
 `;
 
 const ProfilePage = () => {
+  const [predictionResult, setPredictionResult] = useState(true);
+  const [hasResult, setHasResult] = useState(false);
+
   function handleClick() {
-    navigate("/profile");
+    window.location.reload();
+    console.log("button clicked");
   }
-  const navigate = useNavigate();
-  const [hasvideo, setHasvideo] = useState(true);
 
   return (
-    <>
-      <Container>
-        <Header onClick={handleClick}>Deep Reality</Header>
-        <BodyContainer>
-          <Body>
-            <UploadVideo></UploadVideo>
-          </Body>
-          <RightBody>
-            <Header>Step2: Upload the Video </Header>
-            <TextContainer>
-              {hasvideo ? (
-                <>
-                  <Text>1 Browse the Video from your device</Text>
-                  <Text>
-                    2 Confirm your selection by pressing the upload button
-                  </Text>
-                  <Text>3 Wait for Deep Reality to process the video</Text>
-                </>
-              ) : (
-                <>
-                  <Text>The given video is : </Text>
-                  <Button
-                    bgcolor="white"
-                    textcolor="Black"
-                    bradius="20px"
-                    onClick={handleClick}
-                  >
-                    Upload Another?
-                  </Button>
-                </>
-              )}
-            </TextContainer>
-          </RightBody>
-        </BodyContainer>
-      </Container>
-    </>
+    <Container>
+      <Header onClick={handleClick}>Deep Reality</Header>
+      <BodyContainer>
+        <Body>
+          <UploadVideo
+            predictionResult={predictionResult}
+            setPredictionResult={setPredictionResult}
+            hasResult={hasResult}
+            setHasResult={setHasResult}
+          />
+        </Body>
+        <RightBody>
+          <Header>Step2: Upload the Video </Header>
+          <TextContainer>
+            {hasResult ? (
+              <>
+                <Text>The given video is {predictionResult}: </Text>
+                <br></br>
+                <Button
+                  bgcolor="white"
+                  textcolor="Black"
+                  bradius="20px"
+                  onClick={handleClick}
+                >
+                  Upload Another?
+                </Button>
+              </>
+            ) : (
+              <>
+                <Text>1 Browse the Video from your device</Text>
+                <Text>
+                  2 Confirm your selection by pressing the upload button
+                </Text>
+                <Text>3 Wait for Deep Reality to process the video</Text>
+              </>
+            )}
+          </TextContainer>
+        </RightBody>
+      </BodyContainer>
+    </Container>
   );
 };
 

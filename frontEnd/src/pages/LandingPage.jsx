@@ -6,7 +6,8 @@ import LoginAndSignupModel from "../components/LoginAndSignupModel";
 // Define global styles
 const GlobalStyle = createGlobalStyle`
   body {
-    font-family: Arial, sans-serif; /* Set the desired font-family */
+    font-family: Arial, sans-serif;
+    overflow:hidden /* Set the desired font-family */
   }
 `;
 
