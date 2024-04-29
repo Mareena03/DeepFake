@@ -45,16 +45,12 @@ export default function LoginForm() {
     setUsername("");
     setPassword("");
 
-    //fastapi
     fetch("http://localhost:8000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        title: username,
-        content: password,
-      }),
+      body: JSON.stringify({ title: username, content: password }),
     })
       .then((res) => {
         if (!res.ok) {
@@ -63,10 +59,13 @@ export default function LoginForm() {
         return res.json();
       })
       .then((data) => {
-        console.log(data); // Log response from backend
+        console.log(data);
+        navigate("/profile");
+        // Add additional logic for successful login (e.g., redirect to another page)
       })
       .catch((error) => {
-        console.error("Error:", error); // Handle errors
+        console.error("Error:", error);
+        // Handle login error
       });
   };
 

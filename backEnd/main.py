@@ -1,4 +1,4 @@
-from fastapi import FastAPI,File,UploadFile
+from fastapi import FastAPI,File,UploadFile,Request
 from pydantic import BaseModel
 from random import randrange
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,6 +8,7 @@ from Bmodel import prediction
 import keras as tf
 import psycopg2
 from psycopg2.extras import RealDictCursor 
+from data import signup, login
 app = FastAPI()
 
 app.add_middleware(
@@ -18,54 +19,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-while True:
-    try:
-        conn=psycopg2.connect(host="localhost",database="DeepReality",user="postgres",password="postgress@123",cursor_factory=RealDictCursor)
-        cursor=conn.cursor()
-        print("keriyada makkale databaseil")
-        break;
-    except Exception as error:
-        print("connecting to database failed")
-        print("Error was :",error)
-
-class LoginDetail(BaseModel):
-    title: str
-    content: str
-
-login_data = [
-    {"title": "title1", "content": "content1", "id": 1},
-    {"title": "title2", "content": "content2", "id": 2}
-]
-
-
-def generate_post_id():
-    return randrange(0, 1000000)
-
-
-class SignupDetail(BaseModel):
-    title: str
-    content: str
-
-signup_data=[]
-
 @app.post("/signup")
-async def signup(signupdetails:SignupDetail):
-    signup_data_dict=signupdetails.dict()
-    signup_data_dict["id"]=generate_post_id()
-    signup_data.append(signup_data_dict)
-    return{"message":"signup sucessfull","data":signup_data}
-
+async def register_user(request: Request):
+    data = await request.json()
+    username = data.get('title')
+    password = data.get('content')
+    return signup(username, password)
 
 @app.post("/login")
-async def login(login_details: LoginDetail):
-    login_data_dict = login_details.dict()
-    login_data_dict["id"] = generate_post_id()
-    login_data.append(login_data_dict)
-    return {"message": "Login sucessfull"}
+async def authenticate_user(request: Request):
+    data = await request.json()
+    username = data.get('title')
+    password = data.get('content')
+    return login(username, password)
 
-# @app.get("/data")
-# async def get_data():
-#     return {"details": login_data}
+
 
 # ..........................................................................
 # video_data=[]

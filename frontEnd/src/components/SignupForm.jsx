@@ -43,16 +43,12 @@ export default function SignupForm() {
     setUsername("");
     setPassword("");
 
-    //fastapi
     fetch("http://localhost:8000/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        title: username,
-        content: password,
-      }),
+      body: JSON.stringify({ title: username, content: password }),
     })
       .then((res) => {
         if (!res.ok) {
@@ -61,10 +57,12 @@ export default function SignupForm() {
         return res.json();
       })
       .then((data) => {
-        console.log(data); // Log response from backend
+        console.log(data);
+        // Add additional logic for successful signup (e.g., redirect to login page)
       })
       .catch((error) => {
-        console.error("Error:", error); // Handle errors
+        console.error("Error:", error);
+        // Handle signup error
       });
   };
 
