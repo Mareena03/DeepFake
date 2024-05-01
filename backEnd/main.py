@@ -34,27 +34,9 @@ async def authenticate_user(request: Request):
     return login(username, password)
 
 
-
-# ..........................................................................
-# video_data=[]
 UPLOAD_DIRECTORY = "uploads"
 global prediction_result_main
 
-# @app.post("/uploadVideo")
-# async def upload_video(video: UploadFile = File(...)):
-    
-#     try:
-#         if not os.path.exists(UPLOAD_DIRECTORY):
-#             os.makedirs(UPLOAD_DIRECTORY)
-
-#         file_location = os.path.join(UPLOAD_DIRECTORY, video.filename)
-#         with open(file_location, "wb") as file_object:
-#             file_object.write(video.file.read())
-#             prediction_result_main = preprocess_and_predict(file_location)
-#         print("Prediction result:", prediction_result_main)
-#         return {"message": "File uploaded successfully", "file_location": file_location}
-#     except Exception as e:
-#         return {"error": str(e)}
 
 prediction_result_main = None
 
