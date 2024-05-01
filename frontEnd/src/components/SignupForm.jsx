@@ -98,6 +98,12 @@ export default function SignupForm() {
     setShowContent(false);
   };
   const handleSignup = () => {
+    // Check if either username or password field is empty
+    if (!username || !password) {
+      alert("Fill in both fields first");
+      return; // Exit the function early if fields are empty
+    }
+
     setShowContent(false);
     setUsername("");
     setPassword("");
