@@ -13,13 +13,18 @@ const VideoContainer = styled.div`
   border-radius: 20px;
 `;
 
-const VideoPlayer = styled.video`
-  max-height: 100%;
-  max-width: 100%;
-  border-radius: 20px;
+const Container = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
-const ContentWrapper = styled.div``;
+const VideoPlayer = styled.video`
+  max-height: 80vh;
+  max-width: 80vh;
+  border-radius: 20px;
+`;
 
 const Heading = styled.h2`
   text-decoration: underline;
@@ -51,13 +56,13 @@ export default function VideoComp({
   }, [videoData, setPredictionResult]);
 
   return (
-    <VideoContainer>
-      <ContentWrapper>
-        <Heading>
-          The Result : <span style={{ color: "red" }}>{predictionResult}</span>
-        </Heading>
-      </ContentWrapper>
-      <VideoPlayer src={srrc} controls autoPlay loop></VideoPlayer>
-    </VideoContainer>
+    <Container>
+      <Heading>
+        The Result : <span style={{ color: "red" }}>{predictionResult}</span>
+      </Heading>
+      <VideoContainer>
+        <VideoPlayer src={srrc} controls autoPlay loop></VideoPlayer>
+      </VideoContainer>
+    </Container>
   );
 }

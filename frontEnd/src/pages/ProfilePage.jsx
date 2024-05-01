@@ -101,8 +101,13 @@ const ProfilePage = () => {
           <TextContainer>
             {hasResult ? (
               <>
-                <Text>The given video is {predictionResult}: </Text>
-                <br></br>
+                <Text>
+                  The given video is :
+                  <span style={{ color: "red", fontSize: "40px" }}>
+                    {predictionResult}
+                  </span>
+                </Text>
+                <br style={{ margin: "10px" }}></br>
                 <Button
                   bgcolor="white"
                   textcolor="Black"
