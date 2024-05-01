@@ -52,7 +52,7 @@ export default function SignupForm() {
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Network response was not ok");
+          throw res;
         }
         return res.json();
       })
@@ -61,8 +61,25 @@ export default function SignupForm() {
         // Add additional logic for successful signup (e.g., redirect to login page)
       })
       .catch((error) => {
-        console.error("Error:", error);
-        // Handle signup error
+        error
+          .json()
+          .then((data) => {
+            // Access the detail message from the server response
+            const detailMessage = data.detail;
+            console.log("Error detail:", detailMessage);
+
+            // Display an alert or any other UI element to show the error message
+            if (detailMessage === "Username already exists") {
+              alert("Username already exists");
+            } else if (detailMessage === "Failed to connect to the database") {
+              alert("Failed to connect to the database");
+            } else {
+              alert(`An error occurred: ${detailMessage}`);
+            }
+          })
+          .catch((jsonError) => {
+            console.error("Error parsing JSON response:", jsonError);
+          });
       });
   };
 

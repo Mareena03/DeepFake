@@ -39,7 +39,7 @@ def signup(username, password):
         return {"message": "User registered successfully"}
     except Exception as error:
         print("Error occurred:", error)
-        raise HTTPException(status_code=500, detail="Internal server error")
+        raise HTTPException(status_code=500, detail="Username Alredy Exists, Try again with another user name.")
     finally:
         cursor.close()
         conn.close()
