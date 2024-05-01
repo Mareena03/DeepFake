@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "./Button";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Modal = styled.div`
   position: fixed;
@@ -13,23 +14,81 @@ const Modal = styled.div`
   margin: 0 auto;
   padding: 20px;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.4); /* Purple shade with 40% opacity */
+  background-color: rgba(0, 0, 0, 0.4);
 `;
 
 const ModalContent = styled.div`
-  background-color: #fefefe;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
   margin: 15% auto;
   padding: 20px;
-  border: 3px solid #7ed5f1;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   width: 40%;
-  border-radius: 50px;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      60deg,
+      rgba(255, 255, 255, 0.1),
+      transparent,
+      transparent,
+      transparent,
+      rgba(255, 255, 255, 0.1)
+    );
+    transform: rotateZ(30deg) translate(-5px, 65px);
+    animation: shine 5s infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      transform: rotateZ(30deg) translate(-5px, 65px) rotate(0deg);
+    }
+    50% {
+      transform: rotateZ(30deg) translate(-5px, 65px) rotate(180deg);
+    }
+    100% {
+      transform: rotateZ(30deg) translate(-5px, 65px) rotate(360deg);
+    }
+  }
+`;
+
+const FormInput = styled.input`
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 10px;
+  color: #fff;
+  width: calc(100% - 24px);
+  margin: 5px 0 10px 0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    outline: none;
+    border-color: cyan; /* Add cyan border on focus */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+`;
+
+const FormLabel = styled.label`
+  color: #fff;
+  text-align: left;
 `;
 
 export default function SignupForm() {
   const [showContent, setShowContent] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const showSignup = () => {
     setShowContent(true);
@@ -58,7 +117,7 @@ export default function SignupForm() {
       })
       .then((data) => {
         console.log(data);
-        // Add additional logic for successful signup (e.g., redirect to login page)
+        navigate("/profile");
       })
       .catch((error) => {
         error
@@ -113,10 +172,10 @@ export default function SignupForm() {
             </span>
             <h2 style={{ textAlign: "left", color: "#000" }}>Sign Up</h2>
             <form>
-              <label style={{ textAlign: "left", color: "#000" }}>
+              <FormLabel style={{ textAlign: "left", color: "#000" }}>
                 Username:
-              </label>
-              <input
+              </FormLabel>
+              <FormInput
                 style={{
                   width: "calc(100% - 24px)",
                   padding: "10px",
@@ -126,12 +185,13 @@ export default function SignupForm() {
                 id="pa"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-              ></input>
+                required
+              ></FormInput>
               <br />
-              <label style={{ textAlign: "left", color: "#000" }}>
+              <FormLabel style={{ textAlign: "left", color: "#000" }}>
                 Password:
-              </label>
-              <input
+              </FormLabel>
+              <FormInput
                 style={{
                   width: "calc(100% - 24px)",
                   padding: "10px",
@@ -141,10 +201,18 @@ export default function SignupForm() {
                 id="username"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-              ></input>
+              ></FormInput>
+              <br></br>
               <br />
               <div>
-                <Button bgcolor="#00FF00" type="button" onClick={handleSignup}>
+                <Button
+                  bwidth="50%"
+                  bradius="100px"
+                  bgcolor="#00FF00"
+                  type="button"
+                  onClick={handleSignup}
+                  required
+                >
                   Sign Up
                 </Button>
               </div>
