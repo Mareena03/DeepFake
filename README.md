@@ -1,9 +1,3 @@
-<h1>DeepReality - Deepfake Detection System</h1>
-
-Here's a more concise version of the `README.md` for your DeepReality project:
-
----
-
 # DeepReality - Deepfake Detection System
 
 ## Introduction
@@ -59,4 +53,4 @@ This project is licensed under the MIT License.
 
 ---
 
-This version is much more concise while still covering the essential details. Let me know if this works for you!
+
