@@ -1,6 +1,6 @@
 # DeepReality - Deepfake Detection System
 <img src="https://github.com/Mareena03/DeepFake/blob/main/landing.jpeg">
-<img src="[https://github.com/Mareena03/DeepFake/blob/main/landing.jpeg](https://github.com/Mareena03/DeepFake/blob/main/result%20upload.png)">
+<img src="https://github.com/Mareena03/DeepFake/blob/main/result%20upload.png">
 ## Introduction
 DeepReality is a web-based system for detecting deepfake videos. It uses deep learning techniques, specifically Convolutional Neural Networks (CNNs), to identify manipulated content. The project features a React-based frontend and a FastAPI backend.
 
